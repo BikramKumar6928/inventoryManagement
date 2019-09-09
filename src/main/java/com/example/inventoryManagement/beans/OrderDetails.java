@@ -1,8 +1,15 @@
-package beans;
+package com.example.inventoryManagement.beans;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
+@Entity
 public class OrderDetails {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private String id;
 	private Supplier supplier;
 	private Owner owner;
@@ -26,7 +33,7 @@ public class OrderDetails {
 		}
 		isUpdated = true;
 		products.forEach(product ->{
-			totalAmount += product.getPrice();
+			totalAmount += product.getPrice() * product.getCount();
 			totalProducts += product.getCount();
 		});
 	}

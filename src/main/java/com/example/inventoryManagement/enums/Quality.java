@@ -1,4 +1,4 @@
-package beans;
+package com.example.inventoryManagement.enums;
 
 public enum Quality {
 	GOOD(1),

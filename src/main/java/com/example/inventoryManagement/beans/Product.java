@@ -1,8 +1,16 @@
-package beans;
+package com.example.inventoryManagement.beans;
 
+import com.example.inventoryManagement.enums.Quality;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
+@Entity
 public class Product {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private String id;
 	private double price;
 	private Date manufactureDate;
