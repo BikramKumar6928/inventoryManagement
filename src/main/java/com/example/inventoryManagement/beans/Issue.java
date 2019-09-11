@@ -15,8 +15,8 @@ public class Issue {
 
     public Issue(OrderDetails orderDetails, String message) {
         setOrderDetails(orderDetails);
-        setMessage(message);
     }
+
 
 
     public void setOrderDetails(OrderDetails orderDetails) {

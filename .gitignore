@@ -14,11 +14,7 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-<<<<<<< HEAD
-.idea/
-=======
 .idea
->>>>>>> remotes/origin/master
 *.iws
 *.iml
 *.ipr
