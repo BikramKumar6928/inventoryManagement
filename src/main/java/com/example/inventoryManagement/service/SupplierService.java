@@ -4,6 +4,7 @@ import com.example.inventoryManagement.beans.OrderDetails;
 import com.example.inventoryManagement.beans.Owner;
 import com.example.inventoryManagement.beans.ProductCount;
 import com.example.inventoryManagement.beans.Supplier;
+import com.example.inventoryManagement.enums.TrackStatus;
 import com.example.inventoryManagement.repository.OwnerRepository;
 import com.example.inventoryManagement.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class SupplierService {
         List<ProductCount> itemList = orderDetails.getProducts();
         owner.addStocks(itemList);
         supplier.removeStocks(itemList);
+        orderDetails.setTrackStatus(TrackStatus.DELIVERED);
 
         synchronized (ownerRepository){
             ownerRepository.save(owner);

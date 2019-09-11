@@ -1,6 +1,7 @@
 package com.example.inventoryManagement.service;
 
 import com.example.inventoryManagement.beans.*;
+import com.example.inventoryManagement.enums.TrackStatus;
 import com.example.inventoryManagement.repository.IssueRepository;
 import com.example.inventoryManagement.repository.OrderRepository;
 import com.example.inventoryManagement.repository.OwnerRepository;
@@ -24,19 +25,13 @@ public class OwnerService {
 
 	@Autowired
 	private IssueRepository issueRepository;
+	
 
-	public String requestBuyStock(ProductCount productCount, Owner owner, Supplier supplier, OrderDetails orderDetails){
-		List<ProductCount> productCounts = new ArrayList<>();
-		productCounts.add(productCount);
-		return requestBuyStock(productCounts,owner,supplier,orderDetails);
-	}
-
-	public String requestBuyStock(List<ProductCount> productCounts, Owner owner, Supplier supplier, OrderDetails orderDetails){
-		if(orderDetails == null){
-			orderDetails = orderRepository.save(new OrderDetails(supplier,owner,productCounts));
+	public String requestBuyStock(OrderDetails orderDetails){
+		orderDetails.setTrackStatus(TrackStatus.PROCESSING);
+		synchronized (orderRepository){
+			orderDetails = orderRepository.save(orderDetails);
 		}
-		orderDetails.addProducts(productCounts);
-		orderDetails = orderRepository.save(orderDetails);
 		return orderDetails.getId();
 	}
 
@@ -94,7 +89,10 @@ public class OwnerService {
 		synchronized (issueRepository) {
 			issueRepository.save(issue);
 		}
-
+	}
+	
+	public void trackOrder(OrderDetails orderDetails){
+		orderDetails.printOrderDetails();
 	}
 
 
