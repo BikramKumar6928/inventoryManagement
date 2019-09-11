@@ -40,6 +40,7 @@ public class OwnerService {
 		return orderDetails.getId();
 	}
 
+<<<<<<< HEAD
 	public void sellStock(ProductCountList productCountList) {
 		Owner owner = productCountList.getOwner();
 		List<ProductCount> productCount = productCountList.getProducts();
@@ -47,6 +48,18 @@ public class OwnerService {
 		owner.removeStocks(productCount);
 		owner.incrementBankBalance(totalAmount);
 
+=======
+	public void sellStock(Owner owner,ProductCount productCount){
+		List<ProductCount> productCounts = new ArrayList<>();
+		productCounts.add(productCount);
+		sellStock(owner,productCounts);
+	}
+
+	public void sellStock(Owner owner, List<ProductCount> productCount) {
+
+		owner.removeStocks(productCount);
+//		owner.incrementBankBalance();
+>>>>>>> 9ff19e43a7c463b3c75e07ff745b50406b4988ab
 		synchronized (ownerRepository){
 			ownerRepository.save(owner);
 		}
@@ -91,10 +104,16 @@ public class OwnerService {
 	}
 
 
+<<<<<<< HEAD
 	public void reportIssue(Issue issue){
 		synchronized (issueRepository) {
 			issueRepository.save(issue);
 		}
+=======
+	public void reportIssue(OrderDetails orderDetails,String message){
+		Issue issue = new Issue(message);
+		issueRepository.save(issue);
+>>>>>>> 9ff19e43a7c463b3c75e07ff745b50406b4988ab
 	}
 
 
