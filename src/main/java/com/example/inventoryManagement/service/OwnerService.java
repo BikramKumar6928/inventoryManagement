@@ -46,7 +46,6 @@ public class OwnerService {
 		double totalAmount = productCountList.getTotalAmount();
 		owner.removeStocks(productCount);
 		owner.incrementBankBalance(totalAmount);
-
 		synchronized (ownerRepository){
 			ownerRepository.save(owner);
 		}
@@ -95,6 +94,7 @@ public class OwnerService {
 		synchronized (issueRepository) {
 			issueRepository.save(issue);
 		}
+
 	}
 
 
