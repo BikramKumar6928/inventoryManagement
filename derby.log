@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sun Sep 15 18:41:46 IST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-016d-350c-fa9e-000005fa3600 
+on database directory memory:/run/media/bikram/Stuff/programs/IDEA/inventoryManagement/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4b85612c 
+Loaded from file:/home/bikram/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=11.0.4+11
+user.dir=/run/media/bikram/Stuff/programs/IDEA/inventoryManagement
+os.name=Linux
+os.arch=amd64
+os.version=5.2.11-1-MANJARO
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

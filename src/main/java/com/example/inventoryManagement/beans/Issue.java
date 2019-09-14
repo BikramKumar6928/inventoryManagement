@@ -1,14 +1,13 @@
 package com.example.inventoryManagement.beans;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
 public class Issue {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String id;
-
+    @OneToOne
     private OrderDetails orderDetails;
     private String message;
 

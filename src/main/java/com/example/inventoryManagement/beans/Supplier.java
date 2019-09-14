@@ -2,10 +2,7 @@ package com.example.inventoryManagement.beans;
 
 import com.example.inventoryManagement.exceptions.LesserItemsInInventory;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +12,7 @@ public class Supplier {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private String id;
+	@OneToMany(cascade=CascadeType.ALL, targetEntity=ProductCount.class)
 	private List<ProductCount> stocks;
 	private double bankBalance;
 

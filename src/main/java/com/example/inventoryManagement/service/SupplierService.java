@@ -18,12 +18,15 @@ public class SupplierService {
     @Autowired
     private SupplierRepository supplierRepository;
 
+    @Autowired
+    private OwnerService ownerService;
+
 
     public void supplyStock(OrderDetails orderDetails){
         Supplier supplier = orderDetails.getSupplier();
         Owner owner = orderDetails.getOwner();
         List<ProductCount> itemList = orderDetails.getProducts();
-        owner.addStocks(itemList);
+        ownerService.addStocks(owner,itemList);
         supplier.removeStocks(itemList);
         orderDetails.setTrackStatus(TrackStatus.DELIVERED);
 

@@ -1,11 +1,14 @@
 package com.example.inventoryManagement.beans;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class OrderDetails extends ProductCountList{
 
+	@Id
+	private String id;
+	@OneToOne
 	private Supplier supplier;
 
 

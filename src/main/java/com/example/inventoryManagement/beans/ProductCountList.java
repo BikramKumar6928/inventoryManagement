@@ -2,16 +2,18 @@ package com.example.inventoryManagement.beans;
 
 import com.example.inventoryManagement.enums.TrackStatus;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Inheritance(strategy= InheritanceType.JOINED)
 public class ProductCountList {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private String id;
+	@OneToOne
 	private Owner owner;
+	@OneToMany(cascade=CascadeType.ALL, targetEntity=ProductCount.class)
 	private List<ProductCount> products;
 	private double totalAmount = 0;
 	private long totalProducts = 0;
@@ -76,10 +78,18 @@ public class ProductCountList {
 		return id;
 	}
 	
+	public void setId(String id){
+		this.id = id;
+	}
+	
 	public TrackStatus getTrackStatus() {
 		return trackStatus;
 	}
-	
+
+	public void setProducts(List<ProductCount> products) {
+		this.products = products;
+	}
+
 	public void setTrackStatus(TrackStatus trackStatus) {
 		this.trackStatus = trackStatus;
 	}

@@ -1,9 +1,11 @@
 package com.example.inventoryManagement.beans;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.example.inventoryManagement.enums.TrackStatus;
+import com.example.inventoryManagement.service.OwnerService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Manager {
@@ -11,6 +13,7 @@ public class Manager {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 
 	private String id;
+	@OneToOne
 	private Owner owner;
 
 	public Manager(Owner owner){
@@ -18,8 +21,11 @@ public class Manager {
 	}
 
 
+	@Autowired
+	OwnerService ownerService;
 
 	public void maintainLedger(){
+//		List<ProductCount> delivered = ownerService.getStocksWithStatus(owner,TrackStatus.DELIVERED);
 
 	}
 

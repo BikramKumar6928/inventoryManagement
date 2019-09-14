@@ -9,15 +9,15 @@ public class ManagerService {
 	
 	
 	public void maintainLedger(){
-	
+
 	}
 	
 	public void doQualityCheck(){
-	
+
 	}
 	
 	public void reportToOwner(){
-	
+
 	}
 	
 	
