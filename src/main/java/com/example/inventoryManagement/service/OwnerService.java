@@ -7,6 +7,7 @@ import com.example.inventoryManagement.repository.IssueRepository;
 import com.example.inventoryManagement.repository.OrderRepository;
 import com.example.inventoryManagement.repository.OwnerRepository;
 import com.example.inventoryManagement.repository.SupplierRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,15 @@ public class OwnerService {
 	private IssueRepository issueRepository;
 	
 
-	public String requestBuyStock(OrderDetails orderDetails){
+	public Owner createOwner(Owner owner){
+		Owner savedOwner;
+		synchronized (ownerRepository){
+			savedOwner = ownerRepository.save(owner);
+		}
+		return savedOwner;
+	}
+
+	public String requestBuyStock(@NotNull OrderDetails orderDetails){
 		orderDetails.setTrackStatus(TrackStatus.PROCESSING);
 		synchronized (orderRepository){
 			orderDetails = orderRepository.save(orderDetails);
@@ -167,11 +176,18 @@ public class OwnerService {
 //	}
 	public List<OrderDetails> getStocksWithStatus(Owner owner, TrackStatus status) {
 		List<OrderDetails> ownerOrders = orderRepository.findAllByOwner(owner.getId());
-		List<OrderDetails> statusOrders = ownerOrders.stream().filter(orderDetails -> {
-			return orderDetails.getTrackStatus() == status;
-		}).collect(Collectors.toList());
+		List<OrderDetails> statusOrders = ownerOrders.stream()
+				.filter(orderDetails -> orderDetails.getTrackStatus() == status)
+				.collect(Collectors.toList());
 		return statusOrders;
 	}
 
 
+	public Owner getOwner(String id) {
+		Owner owner;
+		synchronized (ownerRepository){
+			owner = ownerRepository.findById(id).orElse(null);
+		}
+		return owner;
+	}
 }
